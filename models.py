@@ -8,7 +8,7 @@ Base = declarative_base()
 class Publisher(Base):
     __tablename__ = "publisher"
     publisher_id = sq.Column(sq.INTEGER, primary_key=True)
-    publisher_name = sq.Column(sq.char(length=48), unique=True)
+    publisher_name = sq.Column(sq.VARCHAR(length=48), unique=True)
 
     '''Переопределяем метод str для понятного отображения таблицы в консоли'''
     def __str__(self):
@@ -17,7 +17,7 @@ class Publisher(Base):
 class Book(Base):
     __tablename__ = "book"
     book_id = sq.Column(sq.INTEGER, primary_key=True)
-    book_name = sq.Column(sq.char(length=100), unique=True)
+    book_name = sq.Column(sq.VARCHAR(length=100), unique=True)
     id_publisher = sq.Column(sq.INTEGER, sq.ForeignKey('publisher_id'), nullable=False)
 
     publisher = relationship(Publisher, backref="book")
@@ -29,7 +29,7 @@ class Book(Base):
 class Shop(Base):
     __tablename__ = "shop"
     shop_id = sq.Column(sq.INTEGER, primary_key=True)
-    shop_name = sq.Column(sq.char(length=100), unique=True)
+    shop_name = sq.Column(sq.VARCHAR(length=100), unique=True)
 
     '''Переопределяем метод str для понятного отображения таблицы в консоли'''
     def __str__(self):
@@ -54,7 +54,7 @@ class Sale(Base):
     __tablename__ = "sale"
     sale_id = sq.Column(sq.INTEGER, primary_key=True)
     prise = sq.Column(sq.INTEGER, nullable=False)
-    data_sale = sq.Column(sq.date, nullable=False)
+    data_sale = sq.Column(sq.DATE, nullable=False)
     id_stock = sq.Column(sq.INTEGER, sq.ForeignKey('stock_id'), nullable=False)
     count = sq.Column(sq.INTEGER, nullable=False)
 
